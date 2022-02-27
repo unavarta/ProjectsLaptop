@@ -15,11 +15,11 @@ CREATE TABLE 'table_ferreteria' (
   
 Info para el setup del Server:
 
-server = localhost 
-user = root
-database = testdb
-port = 3306
-password = password
+server = localhost, 
+user = root,
+database = testdb,
+port = 3306,
+password = password.
   
   
   
