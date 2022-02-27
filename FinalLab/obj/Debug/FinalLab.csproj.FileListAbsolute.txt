@@ -1,0 +1,33 @@
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\bin\Debug\FinalLab.exe.config
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\bin\Debug\FinalLab.exe
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\bin\Debug\FinalLab.pdb
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.csproj.AssemblyReference.cache
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.Form1.resources
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.Properties.Resources.resources
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.csproj.GenerateResource.cache
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.csproj.CoreCompileInputs.cache
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.exe
+C:\Users\uriel\Desktop\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.pdb
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.csproj.AssemblyReference.cache
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.exe.config
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.Form1.resources
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.Properties.Resources.resources
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.csproj.GenerateResource.cache
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.csproj.CoreCompileInputs.cache
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.exe
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\obj\Debug\FinalLab.pdb
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\FinalLab.exe.config
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\FinalLab.exe
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\FinalLab.pdb
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\MySql.Data.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\Google.Protobuf.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\ZstdNet.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\System.Memory.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\System.Buffers.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\uriel\Desktop\URIEL\Software Development\Visual Studio Projects\C#\FinalLab\bin\Debug\MySql.Data.xml
