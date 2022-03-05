@@ -45,7 +45,7 @@ namespace FinalLab
 
                 while (reader.Read()) //leera todos los productos hasta el final
                 {
-                    ProductosDataGrid prod = new ProductosDataGrid(); //objeto de la clase ProductosDataGrid
+                    ProductoDataGrid prod = new ProductoDataGrid(); //objeto de la clase ProductosDataGrid
 
                     prod.Codigo = int.Parse(reader.GetString(0));
                     prod.Nombre = reader[1].ToString();

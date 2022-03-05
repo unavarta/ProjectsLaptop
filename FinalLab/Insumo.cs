@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace FinalLab
 {
-    class InsuMos: ProdFerre
+    class Insumo: ProductoFerreteria
     {
 
         public double precioFinal;
         
-        public InsuMos(String nombreProducto, double precProducto, int cantProducto)
+        public Insumo(String nombreProducto, double precProducto, int cantProducto)
             :base(nombreProducto, precProducto,cantProducto)
         {
-
         }
-
 
         public override double calcularPrecio(int cantProducto, double precioProducto)
         {
@@ -33,7 +31,21 @@ namespace FinalLab
             return precioFinal;
         }
 
+        public override string descuentoAplicado(int _cantProducto)
+        {
+            string descuentoAplicado;
+            
+            if (_cantProducto >= 12)
+            {
+                descuentoAplicado = "10%";
+            }
+            else
+            {
+                descuentoAplicado = "Sin descuento.";
+            }
 
+            return descuentoAplicado;
+        }
 
 
 

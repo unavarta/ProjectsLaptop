@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace FinalLab
 {
-    class ProductosDataGrid
+    class ProductoDataGrid
     {
+        //esta clase se utiliza para enviar del form a la base de datos lo que se debe actualizar o borrar.
+
         private int _codigo;
         private string _nombre;
         private int _stock;

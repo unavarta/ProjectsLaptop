@@ -13,13 +13,15 @@ namespace FinalLab
 {
     public partial class Form1 : Form
     {
+        //objeto repositorio
+        RepositorioProductoFerreteria RepoForm = new RepositorioProductoFerreteria();
+
+
+        //Objeto para el conectador de la base de datos al DataGridView
+        ManejadorBD conectorBD = new ManejadorBD();
+
         //lista de compras que luego se mostrara al finalizar la compra. 
-        List<ProdFerre> listaCompras = new List<ProdFerre>();
-
-        //Objeto para el conectador de la base de datos al.NET 
-        ManejadorBD controladorBD = new ManejadorBD();
-        MySqlConnection connectTest;
-
+        List<ProductoFerreteria> listaCompras = new List<ProductoFerreteria>();
         public Form1()
         {
             InitializeComponent();
@@ -47,216 +49,26 @@ namespace FinalLab
 
         }
         #endregion
-
-        #region BotonesCarrito
-        private void but_borrarCart_Click(object sender, EventArgs e)
-        {
-            listaCompras.Clear();
-        }
-
-        private void but_agregar_Click(object sender, EventArgs e)
-        {
-            if (rb_Herramienta.Checked)
-            {
-                //el if abajo funciona con valores true y a su vez convierte los datos de string a sus respectivos tipos.
-                //esto funcionara de esta forma para la mayor parte del codigo escrito en este metodo.
-                if (int.TryParse(tb_cantProducto.Text, out int _cantProducto) && double.TryParse(tb_precProducto.Text, out double _precProducto))
-                {
-                    string _nombreProducto = tb_nombreProducto.Text;
-                    string _colorHerra = tb_colorHerra.Text;
-                    listaCompras.Add(new HerraMienta(_nombreProducto, _precProducto, _cantProducto, _colorHerra));
-
-                    lb_agregarProducto.Text = "Herramienta agregada al carrito.";
-                    lb_agregarProducto.ForeColor = Color.Green;
-
-                    //al agregarse al carrito se borrara la cantidad indicada del stock de la base de datos 
-                    int codigo_producto = int.Parse(tb_codigoProducto.Text);
-                    string sql = "UPDATE table_ferreteria SET stock_producto = (stock_producto -'" + _cantProducto + "') WHERE codigo_producto='" + codigo_producto + "'";
-
-                    MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                    conexionBD.Open();
-
-                    try
-                    {
-                        MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Base datos modificada!");
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("Error al guardar." + ex.Message);
-                    }
-                    finally
-                    {
-                        conexionBD.Close();
-                    }
-
-                    //se limpian todos los text boxes.
-                    limpiarTextBox();
-                }
-                else
-                {
-                    lb_agregarProducto.Text = "Error en el tipeo de datos.";
-                    lb_agregarProducto.ForeColor = Color.Red;
-                }
-
-            }
-            else if (rb_Herreria.Checked)
-            {
-                if (int.TryParse(tb_cantProducto.Text, out int _cantProducto) && double.TryParse(tb_precProducto.Text, out double _precProducto))
-                {
-                    string _nombreProducto = tb_nombreProducto.Text;
-                    listaCompras.Add(new HerreRia(_nombreProducto, _precProducto, _cantProducto));
-
-                    lb_agregarProducto.Text = "Herreria agregada al carrito.";
-                    lb_agregarProducto.ForeColor = Color.Green;
-
-                    //al agregarse al carrito se borrara la cantidad indicada del stock de la base de datos 
-                    int codigo_producto = int.Parse(tb_codigoProducto.Text);
-                    string sql = "UPDATE table_ferreteria SET stock_producto = (stock_producto -'" + _cantProducto + "') WHERE codigo_producto='" + codigo_producto + "'";
-
-                    MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                    conexionBD.Open();
-
-                    try
-                    {
-                        MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Base datos modificada!");
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("Error al guardar." + ex.Message);
-                    }
-                    finally
-                    {
-                        conexionBD.Close();
-                    }
-
-                    //se limpian todos los text boxes.
-                    limpiarTextBox();
-                }
-                else
-                {
-                    lb_agregarProducto.Text = "Error en el tipeo de datos.";
-                    lb_agregarProducto.ForeColor = Color.Red;
-                }
-            }
-            else if (rb_Insumos.Checked)
-            {
-                if (int.TryParse(tb_cantProducto.Text, out int _cantProducto) && double.TryParse(tb_precProducto.Text, out double _precProducto))
-                {
-                    string _nombreProducto = tb_nombreProducto.Text;
-                    listaCompras.Add(new InsuMos(_nombreProducto, _precProducto, _cantProducto));
-
-                    lb_agregarProducto.Text = "Insumo agregado al carrito.";
-                    lb_agregarProducto.ForeColor = Color.Green;
-
-                    //al agregarse al carrito se borrara la cantidad indicada del stock de la base de datos 
-                    int codigo_producto = int.Parse(tb_codigoProducto.Text);
-                    string sql = "UPDATE table_ferreteria SET stock_producto = (stock_producto -'" + _cantProducto + "') WHERE codigo_producto='" + codigo_producto + "'";
-
-                    MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                    conexionBD.Open();
-
-                    try
-                    {
-                        MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Base datos modificada!");
-                    }
-                    catch (MySqlException ex)
-                    {
-                        MessageBox.Show("Error al guardar." + ex.Message);
-                    }
-                    finally
-                    {
-                        conexionBD.Close();
-                    }
-
-                    //se limpian todos los text boxes.
-                    limpiarTextBox();
-                }
-                else
-                {
-                    lb_agregarProducto.Text = "Error en el tipeo de datos.";
-                    lb_agregarProducto.ForeColor = Color.Red;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error. Seleccionar un tipo de producto."); //SI NO SE SELECCIONA NINGUN TIPO DE PRODUCTO. 
-            }
-        }
-
-        private void but_lista_Click(object sender, EventArgs e)
-        {
-            double precioTotal = 0;
-
-            if (listaCompras.Count > 1)
-            {
-                lb_contadorCarrito.Text = "Carrito: " + listaCompras.Count + " Artículos.";
-                lb_precioCarrito.ForeColor = Color.Green;
-
-                foreach (ProdFerre i in listaCompras)
-                {
-                    precioTotal += i.calcularPrecio(i.cantProducto, i.precProducto);
-
-                    lb_precioCarrito.Text = "Precio total: $" + Convert.ToString(precioTotal);
-
-                }
-            }
-            else if (listaCompras.Count == 1)
-            {
-                lb_contadorCarrito.Text = "Carrito: " + listaCompras.Count + " Artículo.";
-                lb_precioCarrito.ForeColor = Color.Green;
-
-                foreach (ProdFerre i in listaCompras)
-                {
-                    precioTotal += i.calcularPrecio(i.cantProducto, i.precProducto);
-
-                    lb_precioCarrito.Text = "Precio total: $" + Convert.ToString(precioTotal);
-                }
-
-            }
-            else if (listaCompras.Count == 0)
-            {
-                lb_contadorCarrito.Text = "Carrito vacio.";
-                lb_precioCarrito.Text = "Precio total: $0";
-                lb_agregarProducto.Text = "";
-            }
-        }
-        #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'testdbDataSet.table_ferreteria' Puede moverla o quitarla según sea necesario.
-            //this.table_ferreteriaTableAdapter.Fill(this.testdbDataSet.table_ferreteria);
+            
 
             //seleccionaremos al radio button de herramienta por defecto. 
             rb_Herramienta.Checked = true;
             cargarTabla(null);
+            Boolean verificarConexion = RepoForm.verificarConexion();
 
-            try
+            if (verificarConexion == true)
             {
-                connectTest = controladorBD.ConnectBD();
-
-                connectTest.Open();
-
-                label1.ForeColor = Color.Green;
-                label1.Text = "Estado base datos: Conectada!";
-
-                connectTest.Close();
+                lb_baseDatos.Text = "Estado base datos: Conectada!";
+                lb_baseDatos.ForeColor = Color.Green;
             }
-            catch (Exception x)
+            else
             {
-
-                label1.ForeColor = Color.Red;
-                label1.Text = "Estado base datos: No conectada!";
-
+                lb_baseDatos.Text = "Estado base datos: Desconectada!";
+                lb_baseDatos.ForeColor = Color.Red;
             }
+            
         }
 
         #region BotonesBaseDatos
@@ -270,28 +82,17 @@ namespace FinalLab
                 int stock_producto = int.Parse(tb_cantProducto.Text);
                 double precio_producto = double.Parse(tb_precProducto.Text);
                 string color_producto = tb_colorHerra.Text;
+                Boolean estadoConsulta = RepoForm.insertarProducto(codigo_producto, nombre_producto, stock_producto, color_producto, precio_producto);
 
-                string sql = "INSERT INTO table_ferreteria(codigo_producto, nombre_producto, stock_producto, color_producto, precio_producto) " +
-                    "VALUES ('" + codigo_producto + "','" + nombre_producto + "','" + stock_producto + "','" + color_producto + "','" + precio_producto + "')";
+                if (estadoConsulta)
+                {
+                    MessageBox.Show("El producto se inserto correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("Error al insertar producto.");
+                }
 
-                MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                conexionBD.Open();
-               
-                try
-                {
-                    MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Base datos actualizada!");
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Error al guardar" + ex.Message);
-                }
-                finally
-                {
-                    conexionBD.Close();
-                }
 
                 //limpiar todos los text boxes
                 limpiarTextBox();
@@ -305,26 +106,15 @@ namespace FinalLab
                 int stock_producto = int.Parse(tb_cantProducto.Text);
                 double precio_producto = double.Parse(tb_precProducto.Text);
 
-                string sql = "INSERT INTO table_ferreteria(codigo_producto, nombre_producto, stock_producto, color_producto, precio_producto) " +
-                    "VALUES ('" + codigo_producto + "','" + nombre_producto + "','" + stock_producto + "','" + null + "','" + precio_producto + "')";
+                Boolean estadoConsulta = RepoForm.insertarProducto(codigo_producto, nombre_producto, stock_producto, null, precio_producto);
 
-                MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                conexionBD.Open();
-
-                try
+                if (estadoConsulta)
                 {
-                    MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Base datos actualizada!");
+                    MessageBox.Show("El producto se inserto correctamente.");
                 }
-                catch (MySqlException ex)
+                else
                 {
-                    MessageBox.Show("Error al guardar" + ex.Message);
-                }
-                finally
-                {
-                    conexionBD.Close();
+                    MessageBox.Show("Error al insertar producto.");
                 }
 
                 //limpiar todos los text boxes
@@ -338,30 +128,17 @@ namespace FinalLab
             {
 
                 int codigo_producto = int.Parse(tb_codigoProducto.Text);
-                string nombre_producto = tb_nombreProducto.Text;
                 int stock_producto = int.Parse(tb_cantProducto.Text);
-                int precio_producto = int.Parse(tb_precProducto.Text);
-                string color_producto = tb_colorHerra.Text;
 
-                string sql = "UPDATE table_ferreteria SET nombre_producto='" + nombre_producto + "', stock_producto='" + stock_producto + "', precio_producto='" + precio_producto + "', color_producto='" + color_producto + "' WHERE codigo_producto='" + codigo_producto + "'";
+                Boolean verificarActualiStock = RepoForm.actualizarStock(stock_producto, codigo_producto);
 
-                MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                conexionBD.Open();
-
-                try
+                if (verificarActualiStock == true)
                 {
-                    MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Base datos modificada!");
+                    MessageBox.Show("Stock actualizado correctamente.");
                 }
-                catch (MySqlException ex)
+                else
                 {
-                    MessageBox.Show("Error al guardar." + ex.Message);
-                }
-                finally
-                {
-                    conexionBD.Close();
+                    MessageBox.Show("Error en la actualizacion del stock.");
                 }
 
                 //limpiar todos los text boxes
@@ -371,29 +148,17 @@ namespace FinalLab
             {
 
                 int codigo_producto = int.Parse(tb_codigoProducto.Text);
-                string nombre_producto = tb_nombreProducto.Text;
                 int stock_producto = int.Parse(tb_cantProducto.Text);
-                double precio_producto = double.Parse(tb_precProducto.Text);
 
-                string sql = "UPDATE table_ferreteria SET nombre_producto='" + nombre_producto + "', stock_producto='" + stock_producto + "', precio_producto='" + precio_producto + "' WHERE codigo_producto='" + codigo_producto + "'";
+                Boolean verificarActualiStock = RepoForm.actualizarStock(stock_producto, codigo_producto);
 
-                MySqlConnection conexionBD = controladorBD.ConnectBD();
-
-                conexionBD.Open();
-
-                try
+                if (verificarActualiStock == true)
                 {
-                    MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Base datos modificada!");
+                    MessageBox.Show("Stock actualizado correctamente.");
                 }
-                catch (MySqlException ex)
+                else
                 {
-                    MessageBox.Show("Error al guardar" + ex.Message);
-                }
-                finally
-                {
-                    conexionBD.Close();
+                    MessageBox.Show("Error en la actualizacion del stock.");
                 }
 
                 //limpiar todos los text boxes
@@ -403,31 +168,32 @@ namespace FinalLab
 
         private void but_borrarBD_Click(object sender, EventArgs e)
         {
-            int codigo_producto = int.Parse(tb_codigoProducto.Text);
-
-            string sql = "DELETE FROM table_ferreteria WHERE codigo_producto =" + codigo_producto;
-
-            MySqlConnection conexionBD = controladorBD.ConnectBD();
-            conexionBD.Open();
+            int codigo_producto;
 
 
-            try
+            if (int.TryParse(tb_codigoProducto.Text, out codigo_producto))
             {
-                MySqlCommand command = new MySqlCommand(sql, conexionBD);
-                command.ExecuteNonQuery();
-                MessageBox.Show("FILA BORRADA!");
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("ERROR AL ELIMINAR!" + ex.Message);
-            }
-            finally
-            {
-                conexionBD.Close();
-            }
+                Boolean filaBorrada = RepoForm.borrarFilaStock(codigo_producto);
 
-            //limpiar todos los text boxes
-            limpiarTextBox();
+                if (filaBorrada == true)
+                {
+                    MessageBox.Show("Fila eliminada correctamente!");
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar la fila.");
+                }
+
+
+                //limpiar todos los text boxes
+                limpiarTextBox();
+            }
+            else
+            {
+                MessageBox.Show("Ingrese un codigo para ser borrado.");
+            }
+                   
+           
         }
         #endregion
        
@@ -438,9 +204,10 @@ namespace FinalLab
 
         private void cargarTabla(string data)
         {
-            List<ProductosDataGrid> listaDataGrid = new List<ProductosDataGrid>();
-            DataGridFerreteria.DataSource = controladorBD.ConsultaBD(data);
+            List<ProductoDataGrid> listaDataGrid = new List<ProductoDataGrid>();
+            DataGridFerreteria.DataSource = conectorBD.ConsultaBD(data);
         }
+
         private void limpiarTextBox()
         {
             tb_codigoProducto.Text = null;
